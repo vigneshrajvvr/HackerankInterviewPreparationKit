@@ -8,55 +8,41 @@ import java.util.concurrent.*;
 import java.util.regex.*;
 
 public class Solution {
-static int k, count1 =0;
+static int k, count =0, check =0;
     // Complete the minimumBribes function below.
     static void minimumBribes(int[] q) {
         int temp;
-        int count[] = new int[q.length];
         for(int i=0;i<q.length;i++)
         {
-            for(int j =0;j <q.length; j++)
+            for(int j =0;j<q.length;j++)
             {
-                if(q[j] == i+1)
+                if(q[j] == q.length-1)
                 {
-                    k = j;
-                    break;
+                    k =j;
                 }
             }
-            for(int j =k; j> k-2;j--)
+            for(int j =k;j< k+2 ;j++)
             {
-                if(q[j] == j+1)
+                if(j == q[j]-1)
                 {
                     break;
                 }
                 else
                 {
                     temp = q[j];
-                    q[j] = q[j-1];
-                    q[j-1] = temp;
-                    count[j]++;
-                    count[j-1]++;
-                    count1++;
-                    if(count[j] >3 || count[j-1] >3)
+                    q[j] = q[j+1];
+                    q[j+1] = temp;
+                    count++;
+                    check++;
+                    if(check >=3)
                     {
-                        System.out.println("Too chaotic");
-                        System.exit(0);
+                        return;
                     }
                 }
             }
+            check =0;
         }
-        for(int i =0;i<q.length;i++)
-        {
-            if(q[i] == i+1)
-            {
-                continue;
-            }
-            else{
-                System.out.println("Too chaotic");
-                System.exit(0);
-            }
-        }
-        System.out.println(""+count1);
+        System.out.println(""+count);
     }
 
     private static final Scanner scanner = new Scanner(System.in);
