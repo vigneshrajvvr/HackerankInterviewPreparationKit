@@ -8,22 +8,22 @@ import java.util.concurrent.*;
 import java.util.regex.*;
 
 public class Solution {
-static int k, count =0, check =0;
+    static int k, count =0;
     // Complete the minimumBribes function below.
     static void minimumBribes(int[] q) {
-        int temp;
-        for(int i=0;i<q.length;i++)
+          int temp;
+        for(int i =0;i< q.length; i++)
         {
-            for(int j =0;j<q.length;j++)
+            for(int j =0;j< q.length ;j++)
             {
-                if(q[j] == q.length-1)
+                if(q[j] == q.length-i)
                 {
-                    k =j;
+                    k = j;
                 }
             }
-            for(int j =k;j< k+2 ;j++)
+            for(int j = k;j<k+2 ; j++)
             {
-                if(j == q[j]-1)
+                if(q[j] == j+1)
                 {
                     break;
                 }
@@ -33,16 +33,22 @@ static int k, count =0, check =0;
                     q[j] = q[j+1];
                     q[j+1] = temp;
                     count++;
-                    check++;
-                    if(check >=3)
-                    {
-                        return;
-                    }
                 }
             }
-            check =0;
         }
-        System.out.println(""+count);
+        for(int i =0;i<q.length;i++)
+        {
+            if(q[i] == i+1)
+            {
+                continue;
+            }
+            else
+            {
+                System.out.println("Too Chaotic");
+                return;
+            }
+        }
+        return;
     }
 
     private static final Scanner scanner = new Scanner(System.in);
